@@ -40,7 +40,7 @@ class BinarySearchTree {
 
   remove(key) {
     if (this.key == key) {
-      if (this.lef && this.right) {
+      if (this.left && this.right) {
         const successor = this.right._findMin();
         this.key = successor.key;
         this.value = successor.value;
@@ -53,7 +53,7 @@ class BinarySearchTree {
         this._replaceWith(null);
       }
     } else if (key < this.key && this.left) {
-      this.right.remove(key);
+      this.left.remove(key);
     } else if (key > this.key && this.right) {
       this.right.remove(key);
     } else {
@@ -68,6 +68,7 @@ class BinarySearchTree {
       } else if (this == this.parent.right) {
         this.parent.right = node;
       }
+
       if (node) {
         node.parent = this.parent;
       }
