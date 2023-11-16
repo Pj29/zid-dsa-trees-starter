@@ -93,4 +93,51 @@ class BinarySearchTree {
     }
     return this.left._findMin();
   }
+
+  dfsInOrder(values = []) {
+    if (this.left) {
+      values = this.left.dfsInOrder(values);
+    }
+
+    values.push(this.value);
+
+    if (this.right) {
+      values = this.right.dfsInOrder(values);
+    }
+
+    return values;
+  }
+
+  dfsPreOrder(values = []) {
+    values.push(this.value);
+
+    if (this.left) {
+      values = this.left.dfsPreOrder(values);
+    }
+
+    if (this.right) {
+      values = this.right.dfsPreOrder(values);
+    }
+
+    return values;
+  }
+
+  dfsPostOrder(values = []) {
+    if (this.left) {
+      values = this.left.dfsPostOrder(values);
+    }
+    if (this.right) {
+      values = this.right.dfsPostOrder(values);
+    }
+    values.push(this.value);
+
+    return values;
+  }
 }
+
+const bst = new BinarySearchTree(7, 7);
+
+bst.insert(2, 2);
+bst.insert(20, 20);
+
+console.log(bst);
